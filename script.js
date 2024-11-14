@@ -20,7 +20,9 @@ function generateDice() {
   return Math.trunc(Math.random() * 6) + 1;
 }
 
+const scores = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
 
 btnRoll.addEventListener('click', function () {
   const dice = generateDice();
@@ -28,7 +30,12 @@ btnRoll.addEventListener('click', function () {
   diceEl.src = `images/dice-${dice}.png`;
 
   if (dice !== 1) {
-    currentScore + dice;
-    current0El.textContent = currentScore;
+    currentScore += dice;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
+  } else {
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    currentScore = 0;
   }
 });
