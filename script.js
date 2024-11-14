@@ -62,16 +62,36 @@ btnHold.addEventListener('click', function () {
   document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
 
-  if (scores[activePlayer] >= 100) {
+  if (scores[activePlayer] >= 10) {
     document
       .querySelector(`.player--${activePlayer}`)
       .classList.add('player--winner');
     document
       .querySelector(`.player--${activePlayer}`)
       .classList.remove('player--active');
+    diceEl.classList.add('hidden');
     playing = false;
     return;
   }
 
   switchPlayer();
+});
+
+btnNew.addEventListener('click', function () {
+  scores[0] = 0;
+  scores[1] = 0;
+  currentScore = 0;
+  playing = true;
+
+  document.getElementById(`current--0`).textContent = 0;
+  document.getElementById(`current--1`).textContent = 0;
+  document.getElementById(`score--0`).textContent = 0;
+  document.getElementById(`score--1`).textContent = 0;
+
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove('player--winner');
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.add('player--active');
 });
